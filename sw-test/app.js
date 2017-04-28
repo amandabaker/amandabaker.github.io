@@ -1,6 +1,10 @@
 // register service worker
 
 if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.addEventListener('activate', function (event) {
+    console.log('activated');
+    incrementCount;
+  })
   navigator.serviceWorker.register('/sw-test/sw.js', { scope: '/sw-test/' }).then(function (reg) {
 
     if (reg.installing) {
