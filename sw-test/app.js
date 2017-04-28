@@ -14,14 +14,16 @@ if ('serviceWorker' in navigator) {
     } else if (reg.active) {
       console.log('Service worker active');
     }
-  }).catch(function (error) {
-    // registration failed
-    console.log('Registration failed with ' + error);
-  }).then((registration) => {
-    if (registration) {
-      addListeners(registration);
-    }
-  });
+  })
+    .catch(function (error) {
+      // registration failed
+      console.log('Registration failed with ' + error);
+    })
+    .then((registration) => {
+      if (registration) {
+        addListeners(registration);
+      }
+    });
 }
 
 function addListeners(registration) {
@@ -36,9 +38,10 @@ function addListeners(registration) {
 }
 
 function incrementCount() {
-  let element = document.getElementById('activateEventCount');
-  let count = element.textContent;
-  element.textContent = ++count;
+  // let element = document.getElementById('activateEventCount');
+  // let count = element.textContent;
+  // element.textContent = ++count;
+  activateCount++;
 }
 
 // function for loading each image via XHR
@@ -111,6 +114,8 @@ function outputRegistrations() {
 
 var imgSection = document.querySelector('section');
 
+var activateCount;
+
 window.onload = function () {
   var unregister = document.createElement('button');
   unregister.textContent = "Toggle Registration";
@@ -121,11 +126,12 @@ window.onload = function () {
 
   var activateEventCounter = document.createElement('p');
   activateEventCounter.id = "activateEventCounter";
-  activateEventCounter.textContent = `Number of times activate has been triggered: `;
-  var activateEventCount = document.createElement('span');
-  activateEventCount.id = 'activateEventCount';
-  activateEventCount.textContent = 0;
-  activateEventCounter.appendChild(activateEventCount);
+  activateCount = 0;
+  activateEventCounter.textContent = `Number of times activate has been triggered: ${activateCount}`;
+  // var activateEventCount = document.createElement('span');
+  // activateEventCount.id = 'activateEventCount';
+  // activateEventCount.textContent = 0;
+  // activateEventCounter.appendChild(activateEventCount);
 
 
   imgSection.appendChild(unregister);

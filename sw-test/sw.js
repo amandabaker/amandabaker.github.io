@@ -48,8 +48,8 @@ this.addEventListener('error', function (event) {
 })
 
 this.addEventListener('activate', function (event) {
-  console.log('Activated');
-  let element = document.getElementById('activateEventCount');
-  let val = element.textContent;
-  element.textContent = ++val;
+  console.log('Something was Activated');
+  // let element = document.getElementById('activateEventCount');
+  // let val = element.textContent;
+  // element.textContent = ++val;
 })
