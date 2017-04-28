@@ -1,5 +1,7 @@
 // register service worker
 
+var activateCount = 0;
+
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.addEventListener('oncontrollerchange', () => {
     console.log('On Controller Change');
@@ -87,8 +89,6 @@ function outputRegistrations() {
 }
 
 var imgSection = document.querySelector('section');
-
-var activateCount = 0;
 
 window.onload = function () {
   var unregister = document.createElement('button');
