@@ -58,8 +58,8 @@ var imgSection = document.querySelector('section');
 
 window.onload = function () {
   var button = document.createElement('button');
-
   button.addEventListener('click', doAThing);
+  imgSection.appendChild(button);
 
   // load each set of image, alt text, name and caption
   for (var i = 0; i <= Gallery.images.length - 1; i++) {
