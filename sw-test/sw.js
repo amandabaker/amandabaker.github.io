@@ -52,4 +52,4 @@ this.addEventListener('activate', function (event) {
   // let element = document.getElementById('activateEventCount');
   // let val = element.textContent;
   // element.textContent = ++val;
-})
+}, false /*usecapture*/)
