@@ -82,20 +82,20 @@ function outputRegistrations() {
         text += `Scope ${registrations[0]} is registered`;
       }
     }
-    registrations.textContent = text;
+    document.getElementById('registrations').innerHTML = text;
   })
 }
 
 var imgSection = document.querySelector('section');
 
 var registrations = document.createElement('p');
+registrations.id = "registrations";
 
 window.onload = function () {
   var unregister = document.createElement('button');
   unregister.textContent = "Toggle Registration";
   unregister.addEventListener('click', toggleRegistration);
   imgSection.appendChild(unregister);
-
   imgSection.appendChild(registrations);
 
   // load each set of image, alt text, name and caption
