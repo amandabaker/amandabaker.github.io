@@ -1,11 +1,6 @@
 // register service worker
 
-var activateCount = 0;
-
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.addEventListener('oncontrollerchange', () => {
-    console.log('On Controller Change');
-  })
   navigator.serviceWorker.register('/sw-test/sw.js', { scope: '/sw-test/' }).then(function (reg) {
 
     if (reg.installing) {
@@ -18,6 +13,18 @@ if ('serviceWorker' in navigator) {
   }).catch(function (error) {
     // registration failed
     console.log('Registration failed with ' + error);
+  }).then((registration) => {
+    addListeners(registration);
+  });
+}
+
+function addListeners(registration) {
+  registration.addEventListener('statechange', function (event) { });
+  registration.addEventListener('controllerchange', function (event) { });
+  registration.addEventListener('updatefound', function (event) { });
+  registration.addEventListener('error', function (event) { });
+  registration.addEventListener('activate', function (event) {
+    activateCount++;
   });
 }
 
@@ -81,7 +88,8 @@ function outputRegistrations() {
     if (!registrations || registrations.length == 0) { text = "No registrations found"; }
     else {
       for (let i = 0; i < registrations.length; i++) {
-        text += `Scope ${registrations[0].scope} is registered`;
+        text += `Scope ${registrations[i].scope} is registered`;
+        addListeners(registrations[i]);
       }
     }
     document.getElementById('registrations').textContent = text;
@@ -89,6 +97,8 @@ function outputRegistrations() {
 }
 
 var imgSection = document.querySelector('section');
+
+var activateCount = 0;
 
 window.onload = function () {
   var unregister = document.createElement('button');
@@ -100,11 +110,7 @@ window.onload = function () {
 
   var activateEventCounter = document.createElement('p');
   activateEventCounter.id = "activateEventCounter";
-  activateEventCounter.textContent = `Number of time activate has been triggered: `;
-  var activateEventCount = document.createElement('span');
-  activateEventCount.id = 'activateEventCount';
-  activateEventCount.textContent = '0';
-  activateEventCounter.appendChild(activateEventCount);
+  activateEventCounter.textContent = `Number of time activate has been triggered: ${activateCount}`;
 
   imgSection.appendChild(unregister);
   imgSection.appendChild(registrations);
@@ -135,3 +141,4 @@ window.onload = function () {
     });
   }
 };
+
