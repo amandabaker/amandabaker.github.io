@@ -26,7 +26,9 @@ function addListeners(registration) {
   registration.addEventListener('updatefound', function (event) { });
   registration.addEventListener('error', function (event) { });
   registration.addEventListener('activate', function (event) {
-    activateCount++;
+    let element = document.getElementById('activateEventCount');
+    let count = element.textContent;
+    element.textContent = ++count;
   });
 }
 
@@ -112,7 +114,12 @@ window.onload = function () {
 
   var activateEventCounter = document.createElement('p');
   activateEventCounter.id = "activateEventCounter";
-  activateEventCounter.textContent = `Number of time activate has been triggered: ${activateCount}`;
+  activateEventCounter.textContent = `Number of times activate has been triggered: `;
+  var activateEventCount = document.createElement('span');
+  activateEventCount.id = 'activateEventCount';
+  activateEventCount.textContent = 0;
+  activateEventCounter.appendChild(activateEventCount);
+
 
   imgSection.appendChild(unregister);
   imgSection.appendChild(registrations);
