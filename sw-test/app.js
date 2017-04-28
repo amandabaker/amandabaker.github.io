@@ -105,7 +105,7 @@ function outputRegistrations() {
     else {
       for (let i = 0; i < registrations.length; i++) {
         text += `Scope ${registrations[i].scope} is registered`;
-        addListeners(registrations[i]);
+        // addListeners(registrations[i]);
       }
     }
     document.getElementById('registrations').textContent = text;
