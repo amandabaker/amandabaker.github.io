@@ -49,4 +49,5 @@ this.addEventListener('error', function (event) {
 
 this.addEventListener('activate', function (event) {
   console.log('Activated');
+  activateCount++;
 })

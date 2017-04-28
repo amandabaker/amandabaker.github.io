@@ -76,7 +76,7 @@ function toggleRegistration() {
 function outputRegistrations() {
   navigator.serviceWorker.getRegistrations().then((registrations) => {
     let text = "";
-    if (!registrations || registrations === []) { text = "No registrations found"; }
+    if (!registrations || registrations.length == 0) { text = "No registrations found"; }
     else {
       for (let i = 0; i < registrations.length; i++) {
         text += `Scope ${registrations[0].scope} is registered`;
@@ -88,15 +88,24 @@ function outputRegistrations() {
 
 var imgSection = document.querySelector('section');
 
-var registrations = document.createElement('p');
-registrations.id = "registrations";
+var activateCount = 0;
 
 window.onload = function () {
   var unregister = document.createElement('button');
   unregister.textContent = "Toggle Registration";
   unregister.addEventListener('click', toggleRegistration);
+
+  var registrations = document.createElement('p');
+  registrations.id = "registrations";
+
+  var activateEventCounter = document.createElement('p');
+  activateEventCounter.textContext = `Number of time activate has been triggered: ${activateCount}`;
+
   imgSection.appendChild(unregister);
   imgSection.appendChild(registrations);
+  imgSection.appendChild(activateEventCounter);
+
+
   outputRegistrations();
 
   // load each set of image, alt text, name and caption
