@@ -28,7 +28,7 @@ this.addEventListener('activate', function (event) {
       }));
     })
   );
-});
+}, false);
 
 this.addEventListener('fetch', function (event) {
   console.log("Active Service Worker");
