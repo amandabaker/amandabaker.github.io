@@ -79,7 +79,7 @@ function outputRegistrations() {
     if (!registrations) { text = "No registrations found"; }
     else {
       for (let i = 0; i < registrations.length; i++) {
-        text += `Scope ${registrations[0]} is registered`;
+        text += `Scope ${registrations[0].scope} is registered`;
       }
     }
     document.getElementById('registrations').textContent = text;
@@ -97,6 +97,7 @@ window.onload = function () {
   unregister.addEventListener('click', toggleRegistration);
   imgSection.appendChild(unregister);
   imgSection.appendChild(registrations);
+  outputRegistrations();
 
   // load each set of image, alt text, name and caption
   for (var i = 0; i <= Gallery.images.length - 1; i++) {
