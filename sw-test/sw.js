@@ -30,7 +30,7 @@ this.addEventListener('activate', function (event) {
       }));
     })
   );
-}, false);
+}, false /*useCapture*/);
 
 this.addEventListener('fetch', function (event) {
   console.log('FETCHING');
@@ -47,26 +47,3 @@ this.addEventListener('fetch', function (event) {
     return caches.match('/sw-test/gallery/myLittleVader.jpg');
   }));
 });
-
-// this.addEventListener('statechange', function (event) {
-//   console.log('State Changed');
-// })
-
-// this.addEventListener('controllerchange', function (event) {
-//   console.log('Controller Changed');
-// })
-
-// this.addEventListener('updatefound', function (event) {
-//   console.log('Update Found');
-// })
-
-// this.addEventListener('error', function (event) {
-//   console.log('Error' + event.toString());
-// })
-
-// this.addEventListener('activate', function (event) {
-//   console.log('Something was Activated');
-//   // let element = document.getElementById('activateEventCount');
-//   // let val = element.textContent;
-//   // element.textContent = ++val;
-// }, false /*usecapture*/)
