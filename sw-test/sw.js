@@ -16,7 +16,22 @@ this.addEventListener('install', function (event) {
   );
 });
 
+this.addEventListener('activate', function (event) {
+  var cacheWhitelist = ['v2'];
+
+  event.waitUntil(
+    caches.keys().then(function (keyList) {
+      return Promise.all(keyList.map(function (key) {
+        if (cacheWhitelist.indexOf(key) === -1) {
+          return caches.delete(key);
+        }
+      }));
+    })
+  );
+});
+
 this.addEventListener('fetch', function (event) {
+  console.log("Active Service Worker");
   var response;
   event.respondWith(caches.match(event.request).catch(function () {
     return fetch(event.request);
@@ -31,25 +46,25 @@ this.addEventListener('fetch', function (event) {
   }));
 });
 
-this.addEventListener('statechange', function (event) {
-  console.log('State Changed');
-})
+// this.addEventListener('statechange', function (event) {
+//   console.log('State Changed');
+// })
 
-this.addEventListener('controllerchange', function (event) {
-  console.log('Controller Changed');
-})
+// this.addEventListener('controllerchange', function (event) {
+//   console.log('Controller Changed');
+// })
 
-this.addEventListener('updatefound', function (event) {
-  console.log('Update Found');
-})
+// this.addEventListener('updatefound', function (event) {
+//   console.log('Update Found');
+// })
 
-this.addEventListener('error', function (event) {
-  console.log('Error' + event.toString());
-})
+// this.addEventListener('error', function (event) {
+//   console.log('Error' + event.toString());
+// })
 
-this.addEventListener('activate', function (event) {
-  console.log('Something was Activated');
-  // let element = document.getElementById('activateEventCount');
-  // let val = element.textContent;
-  // element.textContent = ++val;
-}, false /*usecapture*/)
+// this.addEventListener('activate', function (event) {
+//   console.log('Something was Activated');
+//   // let element = document.getElementById('activateEventCount');
+//   // let val = element.textContent;
+//   // element.textContent = ++val;
+// }, false /*usecapture*/)
