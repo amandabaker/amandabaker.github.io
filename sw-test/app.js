@@ -1,6 +1,8 @@
 // register service worker
 
-var activateCount = 0;
+export var activateCount;
+
+activateCount = 0;
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.addEventListener('oncontrollerchange', () => {
