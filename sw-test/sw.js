@@ -1,5 +1,5 @@
 this.addEventListener('install', function (event) {
-  console.log('instaling!');
+  console.log('INSTALLED');
   event.waitUntil(
     caches.open('v1').then(function (cache) {
       return cache.addAll([
@@ -18,7 +18,7 @@ this.addEventListener('install', function (event) {
 });
 
 this.addEventListener('activate', function (event) {
-  console.log("Active Service Worker");
+  console.log("ACTIVATED");
   var cacheWhitelist = ['v2'];
 
   event.waitUntil(
@@ -33,7 +33,7 @@ this.addEventListener('activate', function (event) {
 }, false);
 
 this.addEventListener('fetch', function (event) {
-  console.log('Fetching!');
+  console.log('FETCHING');
   var response;
   event.respondWith(caches.match(event.request).catch(function () {
     return fetch(event.request);

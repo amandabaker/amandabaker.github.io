@@ -1,10 +1,10 @@
 // register service worker
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.addEventListener('activate', function (event) {
-    console.log('activated');
-    incrementCount;
-  })
+  // navigator.serviceWorker.addEventListener('activate', function (event) {
+  //   console.log('activated');
+  //   incrementCount;
+  // })
   navigator.serviceWorker.register('/sw-test/sw.js', { scope: '/sw-test/' }).then(function (reg) {
 
     if (reg.installing) {
@@ -18,31 +18,31 @@ if ('serviceWorker' in navigator) {
     .catch(function (error) {
       // registration failed
       console.log('Registration failed with ' + error);
-    })
-    .then((registration) => {
-      if (registration) {
-        addListeners(registration);
-      }
     });
+  // .then((registration) => {
+  //   if (registration) {
+  //     addListeners(registration);
+  //   }
+  // });
 }
 
-function addListeners(registration) {
-  registration.addEventListener('statechange', function (event) { });
-  registration.addEventListener('controllerchange', function (event) { });
-  registration.addEventListener('updatefound', function (event) { });
-  registration.addEventListener('error', function (event) { });
-  registration.addEventListener('activate', function (event) {
-    console.log('activated');
-    incrementCount();
-  });
-}
+// function addListeners(registration) {
+//   registration.addEventListener('statechange', function (event) { });
+//   registration.addEventListener('controllerchange', function (event) { });
+//   registration.addEventListener('updatefound', function (event) { });
+//   registration.addEventListener('error', function (event) { });
+//   registration.addEventListener('activate', function (event) {
+//     console.log('activated');
+//     incrementCount();
+//   });
+// }
 
-function incrementCount() {
-  // let element = document.getElementById('activateEventCount');
-  // let count = element.textContent;
-  // element.textContent = ++count;
-  activateCount++;
-}
+// function incrementCount() {
+//   // let element = document.getElementById('activateEventCount');
+//   // let count = element.textContent;
+//   // element.textContent = ++count;
+//   activateCount++;
+// }
 
 // function for loading each image via XHR
 
@@ -114,7 +114,7 @@ function outputRegistrations() {
 
 var imgSection = document.querySelector('section');
 
-var activateCount;
+// var activateCount;
 
 window.onload = function () {
   var unregister = document.createElement('button');
@@ -124,10 +124,10 @@ window.onload = function () {
   var registrations = document.createElement('p');
   registrations.id = "registrations";
 
-  var activateEventCounter = document.createElement('p');
-  activateEventCounter.id = "activateEventCounter";
-  activateCount = 0;
-  activateEventCounter.textContent = `Number of times activate has been triggered: ${activateCount}`;
+  // var activateEventCounter = document.createElement('p');
+  // activateEventCounter.id = "activateEventCounter";
+  // activateCount = 0;
+  // activateEventCounter.textContent = `Number of times activate has been triggered: ${activateCount}`;
   // var activateEventCount = document.createElement('span');
   // activateEventCount.id = 'activateEventCount';
   // activateEventCount.textContent = 0;
