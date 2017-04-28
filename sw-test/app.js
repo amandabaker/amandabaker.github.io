@@ -50,9 +50,7 @@ function imgLoad(imgJSON) {
 
 function doAThing() {
   navigator.serviceWorker.getRegistration().then((reg) => {
-    if (reg !== []) {
-      reg.unregister();
-    } else {
+    if (reg == [] || reg == undefined) {
       navigator.serviceWorker.register('/sw-test/sw.js', { scope: '/sw-test/' }).then(function (reg) {
 
         if (reg.installing) {
@@ -66,6 +64,8 @@ function doAThing() {
         // registration failed
         console.log('Registration failed with ' + error);
       });
+    } else {
+      reg.unregister();
     }
   })
 }
