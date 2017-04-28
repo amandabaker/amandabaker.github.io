@@ -74,6 +74,7 @@ var imgSection = document.querySelector('section');
 
 window.onload = function () {
   var unregister = document.createElement('button');
+  unregister.textContent = "Toggle Registration";
   unregister.addEventListener('click', doAThing);
   imgSection.appendChild(unregister);
 
