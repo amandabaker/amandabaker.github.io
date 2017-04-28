@@ -136,7 +136,7 @@ window.onload = function () {
 
   imgSection.appendChild(unregister);
   imgSection.appendChild(registrations);
-  imgSection.appendChild(activateEventCounter);
+  //imgSection.appendChild(activateEventCounter);
 
 
   outputRegistrations();
