@@ -26,10 +26,15 @@ function addListeners(registration) {
   registration.addEventListener('updatefound', function (event) { });
   registration.addEventListener('error', function (event) { });
   registration.addEventListener('activate', function (event) {
-    let element = document.getElementById('activateEventCount');
-    let count = element.textContent;
-    element.textContent = ++count;
+    console.log('activated');
+    incrementCount();
   });
+}
+
+function incrementCount() {
+  let element = document.getElementById('activateEventCount');
+  let count = element.textContent;
+  element.textContent = ++count;
 }
 
 // function for loading each image via XHR
@@ -101,8 +106,6 @@ function outputRegistrations() {
 }
 
 var imgSection = document.querySelector('section');
-
-var activateCount = 0;
 
 window.onload = function () {
   var unregister = document.createElement('button');
