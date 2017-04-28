@@ -76,13 +76,13 @@ function toggleRegistration() {
 function outputRegistrations() {
   navigator.serviceWorker.getRegistrations().then((registrations) => {
     let text = "";
-    if (!regristrations) text = "No registrations found";
+    if (!regristrations) { text = "No registrations found"; }
     else {
       for (let i = 0; i < regristrations.length; i++) {
         text += `Scope ${registrations[0]} is registered`;
       }
     }
-    document.getElementById('registrations').innerHTML = text;
+    document.getElementById('registrations').textContent = text;
   })
 }
 
