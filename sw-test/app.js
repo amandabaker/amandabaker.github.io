@@ -103,6 +103,7 @@ window.onload = function () {
   activateEventCounter.textContent = `Number of time activate has been triggered: `;
   var activateEventCount = document.createElement('span');
   activateEventCount.id = 'activateEventCount';
+  activateEventCount.textContent = 0;
   activateEventCounter.appendChild(activateEventCount);
 
   imgSection.appendChild(unregister);
