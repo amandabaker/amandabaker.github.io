@@ -1,4 +1,5 @@
 this.addEventListener('install', function (event) {
+  console.log('instaling!');
   event.waitUntil(
     caches.open('v1').then(function (cache) {
       return cache.addAll([
@@ -32,6 +33,7 @@ this.addEventListener('activate', function (event) {
 }, false);
 
 this.addEventListener('fetch', function (event) {
+  console.log('Fetching!');
   var response;
   event.respondWith(caches.match(event.request).catch(function () {
     return fetch(event.request);
