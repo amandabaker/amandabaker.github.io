@@ -49,5 +49,7 @@ this.addEventListener('error', function (event) {
 
 this.addEventListener('activate', function (event) {
   console.log('Activated');
-  activateCount++;
+  let element = document.getElementById('activateEventCount');
+  let val = element.textContent;
+  element.textContent = ++val;
 })

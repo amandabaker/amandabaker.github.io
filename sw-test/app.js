@@ -1,8 +1,6 @@
 // register service worker
 
-export var activateCount;
-
-activateCount = 0;
+var activateCount = 0;
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.addEventListener('oncontrollerchange', () => {
@@ -102,7 +100,10 @@ window.onload = function () {
 
   var activateEventCounter = document.createElement('p');
   activateEventCounter.id = "activateEventCounter";
-  activateEventCounter.textContent = `Number of time activate has been triggered: ${activateCount}`;
+  activateEventCounter.textContent = `Number of time activate has been triggered: `;
+  var activateEventCount = document.createElement('span');
+  activateEventCount.id = 'activateEventCount';
+  activateEventCounter.appendChild(activateEventCount);
 
   imgSection.appendChild(unregister);
   imgSection.appendChild(registrations);
