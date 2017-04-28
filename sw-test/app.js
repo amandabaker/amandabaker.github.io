@@ -76,9 +76,9 @@ function toggleRegistration() {
 function outputRegistrations() {
   navigator.serviceWorker.getRegistrations().then((registrations) => {
     let text = "";
-    if (!regristrations) { text = "No registrations found"; }
+    if (!registrations) { text = "No registrations found"; }
     else {
-      for (let i = 0; i < regristrations.length; i++) {
+      for (let i = 0; i < registrations.length; i++) {
         text += `Scope ${registrations[0]} is registered`;
       }
     }
