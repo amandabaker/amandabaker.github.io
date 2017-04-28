@@ -50,16 +50,32 @@ function imgLoad(imgJSON) {
 
 function doAThing() {
   navigator.serviceWorker.getRegistration().then((reg) => {
-    reg.unregister();
+    if (reg) {
+      reg.unregister();
+    } else {
+      navigator.serviceWorker.register('/sw-test/sw.js', { scope: '/sw-test/' }).then(function (reg) {
+
+        if (reg.installing) {
+          console.log('Service worker installing');
+        } else if (reg.waiting) {
+          console.log('Service worker installed');
+        } else if (reg.active) {
+          console.log('Service worker active');
+        }
+      }).catch(function (error) {
+        // registration failed
+        console.log('Registration failed with ' + error);
+      });
+    }
   })
 }
 
 var imgSection = document.querySelector('section');
 
 window.onload = function () {
-  var button = document.createElement('button');
-  button.addEventListener('click', doAThing);
-  imgSection.appendChild(button);
+  var unregister = document.createElement('button');
+  unregister.addEventListener('click', doAThing);
+  imgSection.appendChild(unregister);
 
   // load each set of image, alt text, name and caption
   for (var i = 0; i <= Gallery.images.length - 1; i++) {
