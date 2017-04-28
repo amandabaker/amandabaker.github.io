@@ -48,7 +48,7 @@ function imgLoad(imgJSON) {
   });
 }
 
-function doAThing() {
+function toggleRegistration() {
   navigator.serviceWorker.getRegistration().then((reg) => {
     if (reg == [] || reg == undefined) {
       navigator.serviceWorker.register('/sw-test/sw.js', { scope: '/sw-test/' }).then(function (reg) {
@@ -60,12 +60,27 @@ function doAThing() {
         } else if (reg.active) {
           console.log('Service worker active');
         }
+        return
       }).catch(function (error) {
         // registration failed
         console.log('Registration failed with ' + error);
-      });
+      }).then(() => {
+        outputRegistrations();
+      })
     } else {
-      reg.unregister();
+      reg.unregister().then(() => outputRegistrations());
+    }
+  })
+}
+
+function outputRegistrations() {
+  navigator.serviceWorker.getRegistrations().then((registrations) => {
+    let text = "";
+    if (!regristrations) text = "No registrations found";
+    else {
+      for (let i = 0; i < regristrations.length; i++) {
+        text += `Scope ${registrations[0]} is registered`;
+      }
     }
   })
 }
@@ -75,8 +90,11 @@ var imgSection = document.querySelector('section');
 window.onload = function () {
   var unregister = document.createElement('button');
   unregister.textContent = "Toggle Registration";
-  unregister.addEventListener('click', doAThing);
+  unregister.addEventListener('click', toggleRegistration);
   imgSection.appendChild(unregister);
+
+  var registrations = document.createElement('p');
+  imgSection.appendChild(registrations);
 
   // load each set of image, alt text, name and caption
   for (var i = 0; i <= Gallery.images.length - 1; i++) {
