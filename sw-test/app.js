@@ -99,6 +99,7 @@ window.onload = function () {
   registrations.id = "registrations";
 
   var activateEventCounter = document.createElement('p');
+  activateEventCounter.id = "activateEventCounter";
   activateEventCounter.textContent = `Number of time activate has been triggered: ${activateCount}`;
 
   imgSection.appendChild(unregister);
