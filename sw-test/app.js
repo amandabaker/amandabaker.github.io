@@ -50,7 +50,7 @@ function imgLoad(imgJSON) {
 
 function doAThing() {
   navigator.serviceWorker.getRegistration().then((reg) => {
-    if (reg) {
+    if (reg !== []) {
       reg.unregister();
     } else {
       navigator.serviceWorker.register('/sw-test/sw.js', { scope: '/sw-test/' }).then(function (reg) {

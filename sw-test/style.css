@@ -38,3 +38,8 @@ caption {
   background: #ccc;
   box-shadow: 1px 1px 1px black;
 }
+
+button {
+  display: block;
+  width: 100%;
+}
