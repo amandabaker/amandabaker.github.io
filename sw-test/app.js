@@ -14,7 +14,9 @@ if ('serviceWorker' in navigator) {
     // registration failed
     console.log('Registration failed with ' + error);
   }).then((registration) => {
-    addListeners(registration);
+    if (registration) {
+      addListeners(registration);
+    }
   });
 }
 
