@@ -5,10 +5,13 @@ if ('serviceWorker' in navigator) {
 
     if (reg.installing) {
       console.log('Service worker installing');
+      reg.installing.onstatechange = (e) => { console.log(`Service worker state changed: ${e.target.state}`) };
     } else if (reg.waiting) {
       console.log('Service worker installed');
+      reg.installing.onstatechange = (e) => { console.log(`Service worker state changed: ${e.target.state}`) };
     } else if (reg.active) {
       console.log('Service worker active');
+      reg.installing.onstatechange = (e) => { console.log(`Service worker state changed: ${e.target.state}`) };
     }
   })
     .catch(function (error) {
