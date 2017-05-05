@@ -58,10 +58,13 @@ function toggleRegistration() {
 
         if (reg.installing) {
           console.log('Service worker installing');
+          reg.installing.onstatechange = (e) => { console.log(`Service worker state changed: ${e.target.state}`) };
         } else if (reg.waiting) {
           console.log('Service worker installed');
+          reg.waiting.onstatechange = (e) => { console.log(`Service worker state changed: ${e.target.state}`) };
         } else if (reg.active) {
           console.log('Service worker active');
+          reg.active.onstatechange = (e) => { console.log(`Service worker state changed: ${e.target.state}`) };
         }
         return
       }).catch(function (error) {
