@@ -5,7 +5,7 @@ if ('serviceWorker' in navigator) {
 
     // if (reg.installing) {
     //console.log('Service worker installing');
-    reg.installing.onstatechange = (e) => { console.log(`Service worker state changed: ${e.target.state}`) };
+    reg.waiting.onstatechange = (e) => { console.log(`Service worker state changed: ${e.target.state}`) };
     // }
     // if (reg.waiting) {
     //console.log('Service worker installed');
