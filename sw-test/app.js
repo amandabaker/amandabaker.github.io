@@ -15,11 +15,10 @@ if ('serviceWorker' in navigator) {
     //console.log('Service worker active');
     //reg.active.onstatechange = (e) => { console.log(`Service worker state changed: ${e.target.state}`) };
     // }
-  })
-    .catch(function (error) {
-      // registration failed
-      console.log('Registration failed with ' + error);
-    });
+  }).catch(function (error) {
+    // registration failed
+    console.log('Registration failed with ' + error);
+  });
 }
 
 // function for loading each image via XHR
