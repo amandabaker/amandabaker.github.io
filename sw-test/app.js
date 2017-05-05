@@ -9,11 +9,11 @@ if ('serviceWorker' in navigator) {
     // }
     // if (reg.waiting) {
     //console.log('Service worker installed');
-    reg.waiting.onstatechange = (e) => { console.log(`Service worker state changed: ${e.target.state}`) };
+    //reg.waiting.onstatechange = (e) => { console.log(`Service worker state changed: ${e.target.state}`) };
     // }
     // if (reg.active) {
     //console.log('Service worker active');
-    reg.active.onstatechange = (e) => { console.log(`Service worker state changed: ${e.target.state}`) };
+    //reg.active.onstatechange = (e) => { console.log(`Service worker state changed: ${e.target.state}`) };
     // }
   })
     .catch(function (error) {
