@@ -48,6 +48,6 @@ this.addEventListener('fetch', function (event) {
   }));
 });
 
-this.addEventListener('onstatechange', function (event) {
-  console.log('ONSTATECHANGE');
-});
+// this.addEventListener('onstatechange', function (event) {
+//   console.log('ONSTATECHANGE');
+// });
