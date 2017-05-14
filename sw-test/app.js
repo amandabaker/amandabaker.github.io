@@ -4,18 +4,26 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.oncontrollerchange = (e) => { console.log(`OnControllerChange ${e.target}`); }
   navigator.serviceWorker.register('/sw-test/sw.js', { scope: '/sw-test/' }).then(function (reg) {
 
-    // if (reg.installing) {
-    //console.log('Service worker installing');
-    reg.active.onstatechange = (e) => { console.log(`Service worker state changed: ${e.target.state}`) };
-    // }
-    // if (reg.waiting) {
-    //console.log('Service worker installed');
-    //reg.waiting.onstatechange = (e) => { console.log(`Service worker state changed: ${e.target.state}`) };
-    // }
-    // if (reg.active) {
-    //console.log('Service worker active');
-    //reg.active.onstatechange = (e) => { console.log(`Service worker state changed: ${e.target.state}`) };
-    // }
+    // subscribe to push manager
+    reg.pushManager.subscribe().then((pushSubscription) => {
+      console.log(pushSubscription.subscriptionId);
+      console.log(pushSubscription.endpoint);
+    }, (error) => {
+      console.log(error);
+    });
+
+    if (reg.installing) {
+      console.log('Service worker installing');
+      reg.installing.onstatechange = (e) => { console.log(`Service worker state changed: ${e.target.state}`) };
+    }
+    if (reg.waiting) {
+      console.log('Service worker installed');
+      reg.waiting.onstatechange = (e) => { console.log(`Service worker state changed: ${e.target.state}`) };
+    }
+    if (reg.active) {
+      console.log('Service worker active');
+      reg.active.onstatechange = (e) => { console.log(`Service worker state changed: ${e.target.state}`) };
+    }
   }).catch(function (error) {
     // registration failed
     console.log('Registration failed with ' + error);
