@@ -5,7 +5,7 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw-test/sw.js', { scope: '/sw-test/' }).then(function (reg) {
 
     // subscribe to push manager
-    reg.pushManager.subscribe().then((pushSubscription) => {
+    reg.pushManager.subscribe({ userVisibleOnly: true }).then((pushSubscription) => {
       console.log(pushSubscription.subscriptionId);
       console.log(pushSubscription.endpoint);
     }, (error) => {
