@@ -7,10 +7,6 @@ this.addEventListener('statechange', function (event) {
   console.log(`State changed to: ${e.target.state}`);
 });
 
-this.addEventListener('fetch', function (evt) {
-    console.log('The service worker is serving the asset.');
-});
-
 var CACHE = 'serviceworker-iframe';
 
 self.addEventListener('fetch', function (evt) {
