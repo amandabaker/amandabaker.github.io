@@ -71,10 +71,10 @@ this.addEventListener('push', function (event) {
       tag: tag
     })
   );
+});
 
-  this.addEventListener('notificationclick', function(event) {
-    event.notification.close();
-  });
+this.addEventListener('notificationclick', function(event) {
+  event.notification.close();
 });
 
 this.addEventListener('statechange', function (event) {
