@@ -50,7 +50,7 @@ this.addEventListener('fetch', function (event) {
 
 this.addEventListener('push', function (event) {
 
-  console.log('Push event triggered');
+  console.log('Received push message');
   var data = {};
   if (event.data) {
     data = event.data.json();
@@ -59,16 +59,17 @@ this.addEventListener('push', function (event) {
   var message = data.message || "Placeholder Message";
   var icon = "images/bountyHunters.jpg";
 
-  var notification = new Notification(title, {
-    body: message,
-    tag: 'push-notification',
-    icon: icon
-  });
 
-  notification.addEventListener('click', function() {
-    if (clients.openWindow) {
-      clients.openWindow('https://amandabaker.github.io/iframe-test/');
-    }
+  event.waitUntil(
+    self.registration.showNotification(title, {
+      body: body,
+      icon: icon,
+      tag: tag
+    })
+  );
+
+  this.addEventListener('notificationclick', function(event) {
+    event.notification.close();
   });
 });
 
