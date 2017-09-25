@@ -52,13 +52,16 @@ this.addEventListener('push', function (event) {
 
   console.log('Received push message');
   var data = {};
-  if (event.data) {
-    data = event.data.json();
-  }
-  var title = data.title || "Placeholder Title";
-  var message = data.message || "Placeholder Message";
-  var icon = "images/bountyHunters.jpg";
+  // if (event.data) {
+  //   data = event.data.json();
+  // }
+  // var title = data.title || "Placeholder Title";
+  // var message = data.message || "Placeholder Message";
+  // var icon = "images/bountyHunters.jpg";
 
+  var title = "Placeholder Title";
+  var message = "Placeholder Message";
+  var icon = "images/bountyHunters.jpg";
 
   event.waitUntil(
     self.registration.showNotification(title, {
