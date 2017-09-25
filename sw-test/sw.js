@@ -49,6 +49,8 @@ this.addEventListener('fetch', function (event) {
 });
 
 this.addEventListener('push', function (event) {
+
+  console.log('Push event triggered');
   var data = {};
   if (event.data) {
     data = event.data.json();
