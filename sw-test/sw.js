@@ -48,6 +48,28 @@ this.addEventListener('fetch', function (event) {
   }));
 });
 
+this.addEventListener('push', function (event) {
+  var data = {};
+  if (event.data) {
+    data = event.data.json();
+  }
+  var title = data.title || "Placeholder Title";
+  var message = data.message || "Placeholder Message";
+  var icon = "images/bountyHunters.jpg";
+
+  var notification = new Notification(title, {
+    body: message,
+    tag: 'push-notification',
+    icon: icon
+  });
+
+  notification.addEventListener('click', function() {
+    if (clients.openWindow) {
+      clients.openWindow('https://amandabaker.github.io/iframe-test/');
+    }
+  });
+});
+
 this.addEventListener('statechange', function (event) {
   console.log(`STATECHANGE ${e.target.state}`);
 });
