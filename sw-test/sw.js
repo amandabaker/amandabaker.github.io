@@ -62,10 +62,11 @@ this.addEventListener('push', function (event) {
   var title = "Placeholder Title";
   var message = "Placeholder Message";
   var icon = "images/bountyHunters.jpg";
+  var tag = 'push-notification';
 
   event.waitUntil(
     self.registration.showNotification(title, {
-      body: body,
+      body: message,
       icon: icon,
       tag: tag
     })
