@@ -18,7 +18,7 @@ this.addEventListener('install', function (event) {
 });
 
 this.addEventListener('activate', function (event) {
-  this.clients.claim();
+  // this.clients.claim();
   console.log("ACTIVATED");
   var cacheWhitelist = ['v2'];
 
