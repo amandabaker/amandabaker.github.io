@@ -3,15 +3,14 @@ this.addEventListener('install', function (event) {
   event.waitUntil(
     caches.open('v1').then(function (cache) {
       return cache.addAll([
-        '/sw-test/',
-        '/sw-test/index.html',
-        '/sw-test/style.css',
-        '/sw-test/app.js',
-        '/sw-test/image-list.js',
-        '/sw-test/star-wars-logo.jpg',
-        '/sw-test/gallery/bountyHunters.jpg',
-        '/sw-test/gallery/myLittleVader.jpg',
-        '/sw-test/gallery/snowTroopers.jpg'
+        './index.html',
+        './style.css',
+        './app.js',
+        './image-list.js',
+        './star-wars-logo.jpg',
+        './gallery/bountyHunters.jpg',
+        './gallery/myLittleVader.jpg',
+        './gallery/snowTroopers.jpg'
       ]);
     })
   );
@@ -36,7 +35,7 @@ this.addEventListener('activate', function (event) {
 this.addEventListener('fetch', function (event) {
   console.log('FETCHING');
   var response;
-  console.log(`event.request: ${event.request}`)
+  console.log(`event.request's url: ${event.request.url}`)
   event.respondWith(caches.match(event.request).catch(function () {
     return fetch(event.request);
   }).then(function (r) {
@@ -47,7 +46,7 @@ this.addEventListener('fetch', function (event) {
     });
     return response.clone();
   }).catch(function () {
-    return caches.match('/sw-test/gallery/myLittleVader.jpg');
+    return caches.match('/gallery/myLittleVader.jpg');
   }));
 });
 
