@@ -18,7 +18,7 @@ this.addEventListener('install', function (event) {
 });
 
 this.addEventListener('activate', function (event) {
-  // this.clients.claim();
+  this.clients.claim();
   console.log("ACTIVATED");
   var cacheWhitelist = ['v2'];
 
@@ -49,30 +49,30 @@ this.addEventListener('fetch', function (event) {
   }));
 });
 
-this.addEventListener('push', function (event) {
+// this.addEventListener('push', function (event) {
 
-  console.log('Received push message');
-  var data = {};
-  // if (event.data) {
-  //   data = event.data.json();
-  // }
-  // var title = data.title || "Placeholder Title";
-  // var message = data.message || "Placeholder Message";
-  // var icon = "images/bountyHunters.jpg";
+//   console.log('Received push message');
+//   var data = {};
+//   // if (event.data) {
+//   //   data = event.data.json();
+//   // }
+//   // var title = data.title || "Placeholder Title";
+//   // var message = data.message || "Placeholder Message";
+//   // var icon = "images/bountyHunters.jpg";
 
-  var title = "Placeholder Title";
-  var message = "Placeholder Message";
-  var icon = "images/bountyHunters.jpg";
-  var tag = 'push-notification';
+//   var title = "Placeholder Title";
+//   var message = "Placeholder Message";
+//   var icon = "images/bountyHunters.jpg";
+//   var tag = 'push-notification';
 
-  event.waitUntil(
-    self.registration.showNotification(title, {
-      body: message,
-      icon: icon,
-      tag: tag
-    })
-  );
-});
+//   event.waitUntil(
+//     self.registration.showNotification(title, {
+//       body: message,
+//       icon: icon,
+//       tag: tag
+//     })
+//   );
+// });
 
 this.addEventListener('notificationclick', function(event) {
   event.notification.close();
