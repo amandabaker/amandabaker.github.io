@@ -40,6 +40,9 @@ this.addEventListener('fetch', function (event) {
   event.respondWith(caches.match(event.request).catch(function () {
     return fetch(event.request);
   }).then(function (r) {
+    if (r === undefined) {
+      throw new Error('response was undefined');
+    }
     response = r;
     console.log(`response: ${response}`);
     caches.open('v1').then(function (cache) {
