@@ -33,24 +33,45 @@ this.addEventListener('activate', function (event) {
   );
 }, false /*useCapture*/);
 
-this.addEventListener('fetch', function (event) {
-  console.log('FETCHING');
-  var response;
-  console.log(`event.request's url: ${event.request.url}`)
-  event.respondWith(caches.match(event.request).catch(function () {
-    return fetch(event.request);
-  }).then(function (r) {
-    if (r === undefined) {
-      throw new Error('response was undefined');
+// this.addEventListener('fetch', function (event) {
+//   console.log('FETCHING');
+//   var response;
+//   console.log(`event.request's url: ${event.request.url}`)
+//   event.respondWith(caches.match(event.request).then(function (r) {
+//     if (r === undefined) {
+//       throw new Error('response was undefined');
+//     }
+//     response = r;
+//     console.log(`response: ${response}`);
+//     caches.open('v1').then(function (cache) {
+//       cache.put(event.request, response);
+//     });
+//     return response.clone();
+//   }).catch(function () {
+//     return fetch(event.request);
+//   }));
+// });
+self.addEventListener('fetch', function (event) {
+  event.respondWith(caches.match(event.request).then(function (response) {
+    // caches.match() always resolves
+    // but in case of success response will have value
+    if (response !== undefined) {
+      return response;
+    } else {
+      return fetch(event.request).then(function (response) {
+        // response may be used only once
+        // we need to save clone to put one copy in cache
+        // and serve second one
+        let responseClone = response.clone();
+
+        caches.open('v1').then(function (cache) {
+          cache.put(event.request, responseClone);
+        });
+        return response;
+      }).catch(function () {
+        return caches.match('/sw-test/gallery/myLittleVader.jpg');
+      });
     }
-    response = r;
-    console.log(`response: ${response}`);
-    caches.open('v1').then(function (cache) {
-      cache.put(event.request, response);
-    });
-    return response.clone();
-  }).catch(function () {
-    return fetch(event.request);
   }));
 });
 
@@ -79,14 +100,14 @@ this.addEventListener('fetch', function (event) {
 //   );
 // });
 
-this.addEventListener('notificationclick', function(event) {
-  event.notification.close();
-});
+// this.addEventListener('notificationclick', function(event) {
+//   event.notification.close();
+// });
 
-this.addEventListener('statechange', function (event) {
-  console.log(`STATECHANGE ${e.target.state}`);
-});
+// this.addEventListener('statechange', function (event) {
+//   console.log(`STATECHANGE ${e.target.state}`);
+// });
 
-this.addEventListener('push', function (event) {
-  console.log(event.data);
-})
+// this.addEventListener('push', function (event) {
+//   console.log(event.data);
+// })
