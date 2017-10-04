@@ -5,12 +5,12 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw-test/sw.js', { scope: '/sw-test/' }).then(function (reg) {
 
     // subscribe to push manager
-    reg.pushManager.subscribe({ userVisibleOnly: true }).then((pushSubscription) => {
-      console.log(pushSubscription.subscriptionId);
-      console.log(pushSubscription.endpoint);
-    }, (error) => {
-      console.log(error);
-    });
+    // reg.pushManager.subscribe({ userVisibleOnly: true }).then((pushSubscription) => {
+    //   console.log(pushSubscription.subscriptionId);
+    //   console.log(pushSubscription.endpoint);
+    // }, (error) => {
+    //   console.log(error);
+    // });
 
     if (reg.installing) {
       console.log('Service worker installing');
