@@ -50,7 +50,7 @@ this.addEventListener('fetch', function (event) {
     });
     return response.clone();
   }).catch(function () {
-    return caches.match('/gallery/myLittleVader.jpg');
+    return fetch(event.request);
   }));
 });
 
