@@ -36,10 +36,12 @@ this.addEventListener('activate', function (event) {
 this.addEventListener('fetch', function (event) {
   console.log('FETCHING');
   var response;
+  console.log(`event.request: ${event.request}`)
   event.respondWith(caches.match(event.request).catch(function () {
     return fetch(event.request);
   }).then(function (r) {
     response = r;
+    console.log(`response: ${response}`);
     caches.open('v1').then(function (cache) {
       cache.put(event.request, response);
     });
