@@ -17,20 +17,21 @@ this.addEventListener('install', function (event) {
   );
 });
 
-// this.addEventListener('activate', function (event) {
-//   console.log("ACTIVATED");
-//   var cacheWhitelist = ['v2'];
+this.addEventListener('activate', function (event) {
+  this.claim();
+  console.log("ACTIVATED");
+  var cacheWhitelist = ['v2'];
 
-//   event.waitUntil(
-//     caches.keys().then(function (keyList) {
-//       return Promise.all(keyList.map(function (key) {
-//         if (cacheWhitelist.indexOf(key) === -1) {
-//           return caches.delete(key);
-//         }
-//       }));
-//     })
-//   );
-// }, false /*useCapture*/);
+  event.waitUntil(
+    caches.keys().then(function (keyList) {
+      return Promise.all(keyList.map(function (key) {
+        if (cacheWhitelist.indexOf(key) === -1) {
+          return caches.delete(key);
+        }
+      }));
+    })
+  );
+}, false /*useCapture*/);
 
 this.addEventListener('fetch', function (event) {
   console.log('FETCHING');
