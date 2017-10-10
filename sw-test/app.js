@@ -87,6 +87,15 @@ function toggleRegistration() {
   })
 }
 
+async function updateRegistration() {
+  let registration = await navigator.serviceWorker.getRegistration();
+  if (registration) {
+    registration.update();
+  } else {
+    console.warn('No registration found');
+  }
+}
+
 function outputRegistrations() {
   navigator.serviceWorker.getRegistrations().then((registrations) => {
     let text = "";
@@ -106,6 +115,10 @@ window.onload = function () {
   var unregister = document.createElement('button');
   unregister.textContent = "Toggle Registration";
   unregister.addEventListener('click', toggleRegistration);
+
+  var update = document.createElement('button');
+  update.textContent = "Update Registration";
+  update.addEventListener('click', updateRegistration);
 
   var registrations = document.createElement('p');
   registrations.id = "registrations";
