@@ -64,7 +64,7 @@ this.addEventListener('push', function (event) {
   // if (event.data) {
   //   data = event.data.json();
   // }
-  // var title = data.title || "Placeholder Title";
+  var title = data.title || "Placeholder Title";
   // var message = data.message || "Placeholder Message";
   // var icon = "images/bountyHunters.jpg";
 
