@@ -33,24 +33,6 @@ this.addEventListener('activate', function (event) {
   );
 }, false /*useCapture*/);
 
-// this.addEventListener('fetch', function (event) {
-//   console.log('FETCHING');
-//   var response;
-//   console.log(`event.request's url: ${event.request.url}`)
-//   event.respondWith(caches.match(event.request).then(function (r) {
-//     if (r === undefined) {
-//       throw new Error('response was undefined');
-//     }
-//     response = r;
-//     console.log(`response: ${response}`);
-//     caches.open('v1').then(function (cache) {
-//       cache.put(event.request, response);
-//     });
-//     return response.clone();
-//   }).catch(function () {
-//     return fetch(event.request);
-//   }));
-// });
 self.addEventListener('fetch', function (event) {
   event.respondWith(caches.match(event.request).then(function (response) {
     // caches.match() always resolves
@@ -75,30 +57,30 @@ self.addEventListener('fetch', function (event) {
   }));
 });
 
-// this.addEventListener('push', function (event) {
+this.addEventListener('push', function (event) {
 
-//   console.log('Received push message');
-//   var data = {};
-//   // if (event.data) {
-//   //   data = event.data.json();
-//   // }
-//   // var title = data.title || "Placeholder Title";
-//   // var message = data.message || "Placeholder Message";
-//   // var icon = "images/bountyHunters.jpg";
+  console.log('Received push message');
+  var data = {};
+  if (event.data) {
+    data = event.data.json();
+  }
+  var title = data.title || "Placeholder Title";
+  var message = data.message || "Placeholder Message";
+  var icon = "images/bountyHunters.jpg";
 
-//   var title = "Placeholder Title";
-//   var message = "Placeholder Message";
-//   var icon = "images/bountyHunters.jpg";
-//   var tag = 'push-notification';
+  var title = "Placeholder Title";
+  var message = "Placeholder Message";
+  var icon = "images/bountyHunters.jpg";
+  var tag = 'push-notification';
 
-//   event.waitUntil(
-//     self.registration.showNotification(title, {
-//       body: message,
-//       icon: icon,
-//       tag: tag
-//     })
-//   );
-// });
+  event.waitUntil(
+    self.registration.showNotification(title, {
+      body: message,
+      icon: icon,
+      tag: tag
+    })
+  );
+});
 
 // this.addEventListener('notificationclick', function(event) {
 //   event.notification.close();
