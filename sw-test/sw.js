@@ -15,6 +15,7 @@ this.addEventListener('install', function (event) {
       ]);
     })
   );
+  this.skipWaiting();
 });
 
 this.addEventListener('activate', function (event) {
