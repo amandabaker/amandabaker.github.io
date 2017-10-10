@@ -61,23 +61,22 @@ this.addEventListener('push', function (event) {
 
   console.log('Received push message');
   var data = {};
-  if (event.data) {
-    data = event.data.json();
-  }
-  var title = data.title || "Placeholder Title";
-  var message = data.message || "Placeholder Message";
-  var icon = "images/bountyHunters.jpg";
+  // if (event.data) {
+  //   data = event.data.json();
+  // }
+  // var title = data.title || "Placeholder Title";
+  // var message = data.message || "Placeholder Message";
+  // var icon = "images/bountyHunters.jpg";
 
-  var title = "Placeholder Title";
-  var message = "Placeholder Message";
-  var icon = "images/bountyHunters.jpg";
-  var tag = 'push-notification';
+  // var title = "Placeholder Title";
+  // var message = "Placeholder Message";
+  // var icon = "images/bountyHunters.jpg";
+  // var tag = 'push-notification';
 
   event.waitUntil(
     self.registration.showNotification(title, {
-      body: message,
-      icon: icon,
-      tag: tag
+      body: "test message",
+      tag: "test tag"
     })
   );
 });
