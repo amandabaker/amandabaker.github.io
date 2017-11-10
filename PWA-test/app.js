@@ -48,7 +48,7 @@ const outputRegistrations = async () => {
     if (!registrations || registrations.length == 0) { 
         text = "No registrations found"; 
     } else {
-        for (const registration of registreations) {
+        for (const registration of registrations) {
             text += `Scope ${registration.scope} is registered`;
         }
     }
