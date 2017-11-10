@@ -6,10 +6,9 @@ html, body {
 }
 
 h1 {
-  text-indent: 100%;
+  text-align: center;
   white-space: nowrap;
   overflow: hidden;
-  height: 197px;
 }
 
 button {

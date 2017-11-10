@@ -56,6 +56,8 @@ const outputRegistrations = async () => {
     document.getElementById('registrations').textContent = text;
 }
 
+const section = document.getElementsByTagName("section")[0];
+
 window.onload = function () {
     var unregister = document.createElement('button');
     unregister.textContent = "Toggle Registration";
@@ -64,8 +66,8 @@ window.onload = function () {
     var registrations = document.createElement('p');
     registrations.id = "registrations";
   
-    imgSection.appendChild(unregister);
-    imgSection.appendChild(registrations);
+    section.appendChild(unregister);
+    section.appendChild(registrations);
   
     outputRegistrations();
 };
