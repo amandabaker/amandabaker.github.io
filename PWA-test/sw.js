@@ -22,7 +22,7 @@ const fetchFiles = async (event) => {
 }
 
 this.addEventListener("install", (event) => {
-    event.waitUntil(chacheFiles);
+    event.waitUntil(cacheFiles);
     this.skipWaiting();
 });
 
