@@ -110,9 +110,9 @@ function outputRegistrations() {
 }
 
 function fetchFiles() {
-  fetch("sw-test/index.html");
-  fetch("sw-test/style.css");
-  fetch("sw-test/app.js");
+  fetch("index.html");
+  fetch("style.css");
+  fetch("app.js");
 }
 
 var imgSection = document.querySelector('section');
