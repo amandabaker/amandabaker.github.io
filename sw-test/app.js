@@ -109,6 +109,12 @@ function outputRegistrations() {
   })
 }
 
+function fetchFiles() {
+  fetch("selftest/TestAssets/ServiceWorker/index.html");
+  fetch("selftest/TestAssets/ServiceWorker/style.css");
+  fetch("selftest/TestAssets/ServiceWorker/app.js");
+}
+
 var imgSection = document.querySelector('section');
 
 window.onload = function () {
@@ -123,9 +129,14 @@ window.onload = function () {
   var registrations = document.createElement('p');
   registrations.id = "registrations";
 
+  var fetch = document.createElement('button');
+  fetch.textContent = "Fetch Files";
+  fetch.addEventListener("click", fetchFiles);
+
   imgSection.appendChild(unregister);
   imgSection.appendChild(registrations);
   imgSection.appendChild(update);
+  imgSection.appendChild(fetch);
 
   outputRegistrations();
 

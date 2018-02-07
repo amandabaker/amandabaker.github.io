@@ -14,24 +14,23 @@ this.addEventListener('install', function (event) {
         '/sw-test/gallery/snowTroopers.jpg'
       ]);
     })
-  );
-  this.skipWaiting();
+  ).then(() => this.skipWaiting());
 });
 
 this.addEventListener('activate', function (event) {
   event.waitUntil(clients.claim());
   console.log("ACTIVATED");
-  var cacheWhitelist = ['v2'];
+  // var cacheWhitelist = ['v2'];
 
-  event.waitUntil(
-    caches.keys().then(function (keyList) {
-      return Promise.all(keyList.map(function (key) {
-        if (cacheWhitelist.indexOf(key) === -1) {
-          return caches.delete(key);
-        }
-      }));
-    })
-  );
+  // event.waitUntil(
+  //   caches.keys().then(function (keyList) {
+  //     return Promise.all(keyList.map(function (key) {
+  //       if (cacheWhitelist.indexOf(key) === -1) {
+  //         return caches.delete(key);
+  //       }
+  //     }));
+  //   })
+  // );
 }, false /*useCapture*/);
 
 self.addEventListener('fetch', function (event) {
